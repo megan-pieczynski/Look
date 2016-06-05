@@ -60,6 +60,7 @@ int CheckMatch(char *line, char *search, char *end, int alnum, int ignorecase) {
  * occurence of a match */
 char *FirstOccurence(char *line, char *search, char *start, char *end) {
    char *temp;
+
    do {
       temp = line;
       if (line == start)
@@ -73,7 +74,7 @@ char *FirstOccurence(char *line, char *search, char *start, char *end) {
 }
 
 /* function to perform a binary search on the file */
-char *BinarySearch (char *start, char *end, char *search) {
+char *BinarySearch(char *start, char *end, char *search) {
    char *middle = start + (end - start) / 2;
    int isMatch;
 
@@ -127,11 +128,15 @@ int PrintMatches(char *fname, char *search, int alnum, int ignorecase) {
       if ((alnum && ignorecase) ||
        !CheckMatch(match, search, end, alnum, ignorecase)) {
          matchStatus = 0;
-         while (match <= end &&  *match != '\n')
+         while (match <= end && *match != '\n')
             putchar(*match++);
          putchar('\n');
-         match++;
       }
+      else {
+         while (match <= end && *match != '\n') 
+            match++;
+      }
+      match++;
    }
 
    if (close(fp)) {
