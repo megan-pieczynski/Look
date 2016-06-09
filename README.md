@@ -1,5 +1,6 @@
 README - look.c
 
+------------------------------------------
 What is it?
 ------------------------------------------
 look is a command line utility that prints all lines to standard out
@@ -10,24 +11,24 @@ is provided look uses the file /usr/share/dict/words
 
 If a file is not specified look compares only alphanumeric characters 
 and ignores the case of alphabetic characters
-
+------------------------------------------
 How To Compile "look.c":
 ------------------------------------------
 Compile look using the Makefile provided
    make look
 
 The Makefile compiles look with -ansi -pedantic -Wall -Werror -O3 -o Look
-
+------------------------------------------
 How To Run "look.c":
 ------------------------------------------
 Run look using the following format 
    ./Look [-dfa] [-t termchar] string [file]
-
+------------------------------------------
 Files Included
 ------------------------------------------
    look.c
    Makefile
-
+------------------------------------------
 Flag Options 
 ------------------------------------------
    -d       Only alphanumeric characters are compared.
@@ -63,19 +64,39 @@ Flag Options
             pizzas
             pizzazz
             pizzazzes
-
+-------------------------------------------
 Error Codes
 -------------------------------------------
-look returns >1 and exits if an error occures
+look returns >1 and exits if an error occurs
 
+-------------------------------------------
 Return Values
 -------------------------------------------
 look returns 0 if at least one line is found and 1 if no lines are found
 
+-------------------------------------------
+Differences In My Implementation
+-------------------------------------------
+In my implementation of look I had it behave slightly differently.
+The UNIX look utility will allow this command:
+   look -t hello hi
+With this command the look utility ignores everything after the h in hello
+and instead performs -t h hi.
+
+Since look is supposed to only take a character after the -t flag I did not 
+allow for such behavior. In my implementation 
+   ./Look -t hello hi
+would result in usage: 
+  look: invalid termination character 
+-------------------------------------------
 Author
 -------------------------------------------
 Megan Pieczynski June 3rd 2016
 Cal Poly San Luis Obispo Computer Science
 
+------------------------------------------
 GitHub Link
 -------------------------------------------
+https://github.com/megan-pieczynski/Look
+
+
